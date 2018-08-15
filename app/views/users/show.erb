@@ -1,0 +1,6 @@
+<p> Here are your workouts, <%= @user.username %>
+<% @user.workouts.each do |workout| %>
+  <div>
+    <%= tweet.exercise %>
+  </div>
+<% end %>
