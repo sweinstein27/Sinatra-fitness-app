@@ -1,0 +1,9 @@
+<h2> Edit Workout </h2>
+
+<form method="post" action="/workouts/<%=@workout.id%>">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <input type="text" name="exercise" value="<%= @workout.exercise %>">
+  <input type="integer" name="sets" value="<%= @workout.sets %>">
+  <input type="integer" name="weight" value="<%= @workout.weight %>">
+  <input type="submit" value="submit">
+</form>
