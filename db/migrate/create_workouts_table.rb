@@ -1,4 +1,4 @@
-class CreateWorkoutsTable < ActiveRecord::Migration
+class CreateWorkoutsTable < ActiveRecord::Migration[4.2]
   def change
     create_table :workouts do |t|
       t.text :exercise
