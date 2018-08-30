@@ -20,11 +20,10 @@ class WorkoutsController < ApplicationController
 
   post '/workouts' do
    if logged_in?
-     binding.pry
      if params[:exercise]= ""
        redirect to "/workouts/new"
      else
-       @workout = current_user.workouts.create(exercise: params[:exercise])
+       @workout = current_user.workouts.create(exercise: params[:exercise], sets: params[:sets], weight: params[:weight])
         redirect to "/workouts/#{@workout.id}"
       end
    else
@@ -87,3 +86,5 @@ class WorkoutsController < ApplicationController
        end
      end
    end
+
+current_user.workouts.create(exercise: params[:exercise], sets: params[:sets], weight: params[:weight])
