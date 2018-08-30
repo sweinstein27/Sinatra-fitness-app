@@ -2,6 +2,7 @@ class WorkoutsController < ApplicationController
 
   get '/workouts' do
     if logged_in?
+      @user = current_user
       @workouts = Workout.all
       erb :'workouts/workouts'
     else
@@ -19,16 +20,13 @@ class WorkoutsController < ApplicationController
 
   post '/workouts' do
    if logged_in?
-     if params[:content] == ""
+     binding.pry
+     if params[:exercise]= ""
        redirect to "/workouts/new"
      else
-       @workout = current_user.workouts.build(content: params[:content])
-       if @workout.save
-         redirect to "/workouts/#{@workout.id}"
-       else
-         redirect to "/workouts/new"
-       end
-     end
+       @workout = current_user.workouts.create(exercise: params[:exercise])
+        redirect to "/workouts/#{@workout.id}"
+      end
    else
      redirect to '/login'
    end
@@ -63,7 +61,7 @@ class WorkoutsController < ApplicationController
        else
          @workout = Workout.find_by_id(params[:id])
          if @workout && @workout.user == current_user
-           if @workout.update(content: params[:content])
+           if @workout.update(exercise: params[:exercise])
              redirect to "/workouts/#{@workout.id}"
            else
              redirect to "/workouts/#{@workout.id}/edit"
