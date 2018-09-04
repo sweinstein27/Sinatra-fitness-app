@@ -86,5 +86,3 @@ class WorkoutsController < ApplicationController
        end
      end
    end
-
-current_user.workouts.create(exercise: params[:exercise], sets: params[:sets], weight: params[:weight])
