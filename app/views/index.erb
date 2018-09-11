@@ -1,12 +1,13 @@
 <h2>Welcome to ScottFit!</h2>
-<p>Please signin or signup below:</p>
+
 
 <nav>
   <% if logged_in? %>
 
-    <a href="/workouts/new"> Create Workout </a>
+  <h3>Welcome, <%=current_user.username %></h3>
+    <a href="/exercises/new"> Create Exercise </a><br>
+    <a href="/Workout/show"> See Workout </a><br>
     <a href="/logout"> Log Out </a>
-    <p>Welcome, <%=current_user.username %></p>
 
   <% else %>
     <a href="/signup">Sign Up</a>

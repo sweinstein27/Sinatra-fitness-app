@@ -1,0 +1,13 @@
+<p> Welcome, <%= current_user.username %>
+<h2> Exercises </h2>
+
+<% @exercises.each do |exercise| %>
+  <div>
+    <%= exercise.exercise %>
+    <%= exercise.sets %>
+    <%= exercise.weight %>
+  </div>
+<% end %>
+
+<a href="/exercises/new"> Create New Exercise </a>
+<a href="/workouts/show"> See Workout </a>
