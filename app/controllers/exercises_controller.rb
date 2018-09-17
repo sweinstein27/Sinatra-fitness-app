@@ -23,7 +23,6 @@ class ExercisesController < ApplicationController
      if params[:exercise]== ""
        redirect to "/exercises/new"
      else
-       binding.pry
        @exercise = current_user.exercises.create(exercise: params[:exercise], sets: params[:sets], weight: params[:weight])
         redirect to "/exercises/#{@exercise.id}"
       end
@@ -34,7 +33,6 @@ class ExercisesController < ApplicationController
 
  get '/exercises/:id' do
    if logged_in?
-     binding.pry
      @exercise = Exercise.find_by_id(params[:id])
      erb :'exercises/show_exercise'
    else
