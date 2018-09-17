@@ -1,10 +1,10 @@
-class WorkoutssController < ApplicationController
+class WorkoutsController < ApplicationController
 
-  get '/workouts/:id' do
+  get '/workouts/show' do
     if logged_in?
       binding.pry
-      @workout= Exercise.where("workout_id = ?", @workout.id)
-      erb :'exercises/show_exercise'
+
+      erb :'workouts/show'
     else
       redirect to '/login'
     end
