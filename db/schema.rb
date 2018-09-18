@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 4) do
+ActiveRecord::Schema.define(version: 5) do
 
   create_table "exercises", force: :cascade do |t|
     t.text    "exercise"
@@ -27,7 +27,14 @@ ActiveRecord::Schema.define(version: 4) do
     t.string "password_digest"
   end
 
+  create_table "workout_exercises", force: :cascade do |t|
+    t.integer "workout_id"
+    t.integer "exercise_id"
+  end
+
   create_table "workouts", force: :cascade do |t|
+    t.string  "name"
+    t.integer "date"
     t.integer "user_id"
     t.integer "exercise_id"
   end
