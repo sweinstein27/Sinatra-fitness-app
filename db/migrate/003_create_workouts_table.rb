@@ -3,6 +3,7 @@ class CreateWorkoutsTable < ActiveRecord::Migration
     create_table :workouts do |t|
       t.string :name
       t.integer :date
+      t.integer :user_id
 
     end
   end
