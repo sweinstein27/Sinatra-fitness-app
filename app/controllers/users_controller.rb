@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/create_user', locals: {message: "Please sign up before you sign in"}
     else
-      redirect to '/workouts'
+      redirect to '/users/:id'
     end
   end
 
@@ -21,8 +21,8 @@ class UsersController < ApplicationController
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
-      binding.pry
-      redirect to '/workouts'
+
+      redirect to "/users/#{@user.id}"
     end
   end
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/login'
     else
-      redirect to '/workouts'
+      redirect to '/users/:id'
     end
   end
 
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect to "/workouts"
+      redirect to '/users/:id'
     else
       redirect to '/signup'
     end

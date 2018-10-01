@@ -1,13 +1,13 @@
+<h1> Workout: <%= @workout.name %>    Date: <%= @workout.date %></h1>
 
-<p>Name: <%= @workout.name %></p>
-<p>Date: <%= @workout.date %></p>
 <% @exercises.each do |exercise| %>
   <div>
-    <%= exercise.exercise %>
-    <%= exercise.sets %>
-    <%= exercise.weight %>
+    <p>Exercise: <%= exercise.exercise %></p>
+    <p>Sets: <%= exercise.sets %></p>
+    <p>Weight: <%= exercise.weight %></p>
   </div>
 <% end %>
+
 
 <form method="post" action="/workouts/<%=@workout.id%>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">

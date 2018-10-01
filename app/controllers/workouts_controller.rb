@@ -40,7 +40,7 @@ class WorkoutsController < ApplicationController
  get '/workouts/:id' do
    if logged_in?
      @workout = Workout.find_by_id(params[:id])
-    #  @exercises = @workout.exercises
+     @exercises = @workout.exercises
      erb :'workouts/show_workout'
    else
      redirect to '/login'
@@ -99,6 +99,7 @@ class WorkoutsController < ApplicationController
     end
 
     post 'workouts/:id' do
+      binding.pry
        @workout = Workout.find_by_id(params[:id])
        @exercises = @workout.exercises
        @exercise = @workout.exercises.create(params)
