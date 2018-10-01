@@ -7,5 +7,4 @@ end
 use Rack::MethodOverride
 run ApplicationController
 use UsersController
-use ExercisesController
 use WorkoutsController
