@@ -2,9 +2,13 @@ class WorkoutsController < ApplicationController
 
   get '/workouts' do
     if logged_in?
+      binding.pry
       @user = current_user
-      @workouts = Workout.all
-      erb :'workouts/workouts'
+      if @workouts = Workout.all.find_by(id: @user.id)
+        erb :'workouts/workouts'
+      else
+        redirect to 'workouts/new'
+      end
     else
       redirect to '/login'
     end
@@ -92,9 +96,14 @@ class WorkoutsController < ApplicationController
       erb :'exercises/add_exercises'
     end
 
-    post '/something' do
-    binding.pry
+    post 'workouts/:id' do
+       @workout = Workout.find_by_id(params[:id])
+       @exercises = @workout.exercises
+       @exercise = @workout.exercises.create(params)
+
+       erb :'/workouts/show_workout'
      end
+
 
 
    end
