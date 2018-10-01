@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
-  get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
+  get '/users/:id' do
+    @user = User.find_by_id(params[:id])
+    binding.pry
     erb :'users/show'
   end
 
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
+      binding.pry
       redirect to '/workouts'
     end
   end

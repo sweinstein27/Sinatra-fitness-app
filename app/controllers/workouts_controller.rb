@@ -27,8 +27,10 @@ class WorkoutsController < ApplicationController
      if params[:workout]== ""
        redirect to "/workouts/new"
      else
-       @workout = current_user.workouts.create(name: params[:name], date: params[:date])
-        redirect to "/workouts/#{@workout.id}"
+       @user = current_user
+       binding.pry
+       @workout = @user.workouts.create(name: params[:name], date: params[:date])
+        redirect to "/users/#{@workout.user_id}"
       end
    else
      redirect to '/login'
@@ -38,7 +40,7 @@ class WorkoutsController < ApplicationController
  get '/workouts/:id' do
    if logged_in?
      @workout = Workout.find_by_id(params[:id])
-     @exercises = @workout.exercises
+    #  @exercises = @workout.exercises
      erb :'workouts/show_workout'
    else
      redirect to '/login'

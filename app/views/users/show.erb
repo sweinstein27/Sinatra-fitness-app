@@ -1,6 +1,10 @@
 <p> Here are your workouts, <%= @user.username %>
 <% @user.workouts.each do |workout| %>
   <div>
-    <%= tweet.exercise %>
+    <p>Name:<%= workout.name %></p>
+    <p>Date:<%= workout.date %></p>
+    <a href="/workouts/workout.id">See workout </a>
   </div>
 <% end %>
+<br>
+<a href="/workouts/new">New Workout</a>
