@@ -98,14 +98,23 @@ class WorkoutsController < ApplicationController
       erb :'exercises/add_exercises'
     end
 
-    post 'workouts/:id' do
-      binding.pry
-       @workout = Workout.find_by_id(params[:id])
-       @exercises = @workout.exercises
-       @exercise = @workout.exercises.create(params)
+    # post '/workouts/:id/exercises' do
+    #   binding.pry
+    #    @workout = Workout.find_by_id(params[:id])
+    #    @exercises = @workout.exercises
+    #    @exercise = @workout.exercises.create(params)
+    #
+    #    erb :'/workouts/show_workout'
+    #  end
 
-       erb :'/workouts/show_workout'
-     end
+     patch '/workouts/:id/exercises' do
+       binding.pry
+        @workout = Workout.find_by_id(params[:id])
+        @exercises = @workout.exercises
+        @exercise = @workout.exercises.create(params)
+
+        erb :'/workouts/show_workout'
+      end
 
 
 
