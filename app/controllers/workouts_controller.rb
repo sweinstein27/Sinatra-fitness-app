@@ -2,7 +2,6 @@ class WorkoutsController < ApplicationController
 
   get '/workouts' do
     if logged_in?
-      binding.pry
       @user = current_user
       if @workouts = Workout.all.find_by(id: @user.id)
         erb :'workouts/workouts'
@@ -28,7 +27,6 @@ class WorkoutsController < ApplicationController
        redirect to "/workouts/new"
      else
        @user = current_user
-       binding.pry
        @workout = @user.workouts.create(name: params[:name], date: params[:date])
         redirect to "/users/#{@workout.user_id}"
       end
@@ -108,11 +106,9 @@ class WorkoutsController < ApplicationController
     #  end
 
      patch '/workouts/:id/exercises' do
-       binding.pry
         @workout = Workout.find_by_id(params[:id])
         @exercises = @workout.exercises
-        @exercise = @workout.exercises.create(params)
-
+        @exercise = @workout.exercises.create(exercise: params[:exercise], sets: params[:sets], weight: params[:weight])
         erb :'/workouts/show_workout'
       end
 
