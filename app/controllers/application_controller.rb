@@ -10,6 +10,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    binding.pry
+    @user = current_user
    erb :index
   end
 

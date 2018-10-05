@@ -83,9 +83,10 @@ class WorkoutsController < ApplicationController
        if logged_in?
          @workout = Workout.find_by_id(params[:id])
          if @workout && @workout.user == current_user
-           @workout.delete
+           @user = @workout.user
+           @workout.destroy
          end
-         redirect to '/workouts'
+         redirect to "/users/#{@user.id}"
        else
          redirect to '/login'
        end

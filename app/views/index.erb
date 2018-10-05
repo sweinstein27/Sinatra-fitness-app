@@ -5,8 +5,8 @@
   <% if logged_in? %>
 
   <h3>Welcome, <%=current_user.username %></h3>
-    <a href="/exercises/new"> Create Exercise </a><br>
-    <a href="/Workouts/show"> See Workout </a><br>
+    <a href="/workouts/new"> Create Workout </a><br>
+    <a href="/users/<%=@user.id%>"> See Workouts </a><br>
     <a href="/logout"> Log Out </a>
 
   <% else %>
